@@ -68,7 +68,7 @@ with_layout :layout do
 end
 ```
 
-## 4. create search javascript
+## 4. Create search javascript
 
 Add the following require script to `all.js`.
 
@@ -80,7 +80,7 @@ Add the following require script to `all.js`.
 
 And create [search.js.jsx](https://github.com/uzimith/middleman-blog-search-sample/blob/master/source/js/search.js.jsx).
 
-## 5. add #search to template
+## 5. Add #search to template
 
 Add the following script to where you want to add.
 
