@@ -1,6 +1,6 @@
 # Middleman-blog search Sample
 
-I found middleman-blog search sample [joelhans/middleman-search-example](https://github.com/joelhans/middleman-search-example). However, it's using jQuery. I don't want to use such a library, so I rewire with [React](http://facebook.github.io/react/) and I add some functions.
+I found middleman-blog search sample [joelhans/middleman-search-example](https://github.com/joelhans/middleman-search-example). However, it's using jQuery. I don't want to use such a library, so I rewrited with [React](http://facebook.github.io/react/) and I added some functions.
 
 [Demo](https://uzimith.github.io/middleman-blog-search-sample/)
 
