@@ -1,0 +1,12 @@
+<%
+entries = []
+blog.articles.each do |article|
+  entry = {
+    :title => article.title,
+    :url => article.url,
+    :date => article.date.strftime('%Y-%m-%d'),
+    :content => strip_tags(article.body).gsub(/[\r\n]/,"")
+  }
+  entries << entry
+end
+%><%=entries.to_json %>
