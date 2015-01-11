@@ -90,6 +90,6 @@ var SearchBox = React.createClass({displayName: "SearchBox",
 });
 
 React.render(
-  React.createElement(SearchBox, {url: "/entries.json"}),
+  React.createElement(SearchBox, {url: "entries.json"}),
   document.getElementById('search')
 );
