@@ -78,11 +78,11 @@ Add the following require script to `all.js`.
 //= require "oboe/dist/oboe-browser.min.js"
 ```
 
-Create [search.js.jsx](https://github.com/uzimith/middleman-blog-search-sample/blob/master/source/js/search.js.jsx).
+And create [search.js.jsx](https://github.com/uzimith/middleman-blog-search-sample/blob/master/source/js/search.js.jsx).
 
 ## 5. add #search to template
 
-Add the following script to where you want add.
+Add the following script to where you want to add.
 
 ```
 #search
