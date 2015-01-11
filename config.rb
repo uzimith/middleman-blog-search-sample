@@ -38,7 +38,10 @@ require 'font-awesome-sass'
 # Sprockets
 ###
 
-sprockets.append_path 'components'
+after_configuration do
+  sprockets.append_path "#{root}/components/"
+end
+
 activate :react, harmony: true
 after_configuration do
   sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))

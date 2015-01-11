@@ -3,5 +3,5 @@
 /.sass-cache
 /.cache
 .DS_Store
-bower_components
+/components
 bower.json
