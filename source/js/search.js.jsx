@@ -26,7 +26,7 @@ var Article = React.createClass({
     return(
         <div className="article-result">
             <div className="article-infomation">
-              <span className="archive-posted-date-wrapper"><i className="fa fa-clock-o"></i><span className="posted-date">{this.props.data.date}</span></span>
+              <span className="archive-posted-date">{this.props.data.date}</span>
               <a href={this.props.data.url}>{this.props.data.title}</a>
             </div>
             <div className="article-content">
@@ -78,7 +78,6 @@ var SearchBox = React.createClass({
     this.setState({result: result});
   },
   render() {
-    var v = "te";
     return (
         <div className="search-box">
           <h1>Search</h1>
