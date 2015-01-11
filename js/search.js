@@ -39,12 +39,9 @@ var Article = React.createClass({displayName: "Article",
 
 var SearchBox = React.createClass({displayName: "SearchBox",
   load:function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function(data)  {return this.setState({data: data});}.bind(this),
-      error: function(xhr, status, err)  {return console.error(this.props.url, status, err.toString());}.bind(this)
-    });
+    oboe(this.props.url)
+      .done( function(data)  {return this.setState({data: data});}.bind(this) )
+      .fail( function(error)  {return console.error(error);} )
   },
   getInitialState:function() {
     return {
