@@ -1,25 +1,92 @@
-# sc-template
-This project is a minimum template for [Middleman](http://middlemanapp.com/).
-We can start coding soon in a modern environment.
+# Middleman-blog search Sample
 
-# Feature
-- HTML5
-- [Slim](http://slim-lang.com/) : A Fast, Lightweight Template Engine for Ruby
-- [Compass](http://compass-style.org/) : CSS Authoring Framework
-- [Normalize.css](http://necolas.github.io/normalize.css/) : Make browsers render all elements more consistently.
-- [Bower](http://bower.io/) : Client javascript library manager.
+I found middleman-blog search sample [joelhans/middleman-search-example](https://github.com/joelhans/middleman-search-example). However, it's using jQuery. I don't want to use such a library, so I rewire with [React](http://facebook.github.io/react/) and I add some functions.
 
-# Usage
+[Demo](https://uzimith.github.io/middleman-blog-search-sample/)
 
-After we put these project files under `~/.middleman`, we can use this project as a middleman template.
+## Introduction
+
+### 1. Create entryes.json.erb
+
+Create `entries.json.erb`.
 
 ```
-mkdir ~/.middleman
-git clone http://github.com/uzimith/sc-template.git
+<%
+entries = []
+blog.articles.each do |article|
+  entry = {
+    :title => article.title,
+    :url => article.url,
+    :date => article.date.strftime('%Y-%m-%d'),
+    :content => strip_tags(article.body).gsub(/[\r\n]/,"")
+  }
+  entries << entry
+end
+%><%=entries.to_json %>
 ```
 
-The method to call template is as follows.
+This is using helper function `strip_tags`. Add this function.
 
 ```
-middleman init project_name -T sc-template
+def strip_tags(text)
+    doc = Nokogiri::HTML::DocumentFragment.parse text
+    doc.inner_text
+end
 ```
+
+### 2. Install dependency
+
+This sample use `react`, `lodash`, `oboe`, so install as below.
+
+```
+$ bower install lodash
+$ bower install oboe
+```
+
+And in `Gemfile`, add this gem.
+
+```
+gem "middleman-react"
+```
+
+### 3. Set config.rb
+
+Set config.rb as below.
+
+```
+after_configuration do
+  sprockets.append_path "#{root}/bower-components/"
+end
+
+activate :react, harmony: true
+after_configuration do
+  sprockets.append_path File.dirname(::React::Source.bundled_path_for('react.js'))
+end
+
+with_layout :layout do
+  page "/entries.json", :layout => false
+end
+```
+
+## 4. create search javascript
+
+Add the following require script to `all.js`.
+
+```
+//= require "react"
+//= require "lodash/dist/lodash.min.js"
+//= require "oboe/dist/oboe-browser.min.js"
+```
+
+Create [search.js.jsx](https://github.com/uzimith/middleman-blog-search-sample/blob/master/source/js/search.js.jsx).
+
+## 5. add #search to template
+
+Add the following script to where you want add.
+
+```
+#search
+= javascript_include_tag "search"
+```
+
+That's all!
